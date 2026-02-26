@@ -21,8 +21,8 @@ D118_API_SECRET = os.environ.get("POWERSCHOOL_API_SECRET_2")
 
 DB_UN = os.environ.get('POWERSCHOOL_READ_USER')  # username for read-only database user
 DB_PW = os.environ.get('POWERSCHOOL_DB_PASSWORD')  # the password for the database account
-DB_CS = os.environ.get('POWERSCHOOL_RES_DB')  # the IP address, port, and database name to connect to in format x.x.x.x:port/db
-PS_URL = os.environ.get('POWERSCHOOL_RES_URL')  # the base URL of the PowerSchool instance, used for API calls
+DB_CS = os.environ.get('POWERSCHOOL_PROD_DB')  # the IP address, port, and database name to connect to in format x.x.x.x:port/db
+PS_URL = os.environ.get('POWERSCHOOL_PROD_URL')  # the base URL of the PowerSchool instance, used for API calls
 
 print(f'DBUG: DB Username: {DB_UN} | DB Password: {DB_PW} | DB Server: {DB_CS}')  # debug so we can see where oracle is trying to connect to/withPS
 

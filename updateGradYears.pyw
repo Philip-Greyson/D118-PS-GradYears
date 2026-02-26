@@ -52,7 +52,7 @@ if __name__ == '__main__':  # main file execution
         print(f'INFO: Execution started at {startTime}', file=log)
         with oracledb.connect(user=DB_UN, password=DB_PW, dsn=DB_CS) as con:  # create the connecton to the database
             with con.cursor() as cur:  # start an entry cursor
-                ps = acme_powerschool.api('d118-powerschool.info', client_id=D118_API_ID, client_secret=D118_API_SECRET)  # create ps object via the API to do requests on
+                ps = acme_powerschool.api(PS_URL, client_id=D118_API_ID, client_secret=D118_API_SECRET)  # create ps object via the API to do requests on
 
                 # first get the year end of the current school year so we can calculate the grad years of the students based on their grade level
                 base_year = get_school_year()
@@ -62,7 +62,7 @@ if __name__ == '__main__':  # main file execution
                 for school in ENABLED_SCHOOLS:  # loop through the schools we want to update
                     cur.execute("SELECT dcid, student_number, classof, grade_level FROM students WHERE schoolid =: school", school=school)  # get the student number, DCID, and current grad year of all students in the school
                     students = cur.fetchall()
-                    for student in students: # loop through the students we got back from the database
+                    for student in students:  # loop through the students we got back from the database
                         dcid = student[0]  # get the DCID of the student
                         student_number = str(int(student[1]))  # get the student number of the student
                         classof = student[2]
@@ -138,5 +138,4 @@ if __name__ == '__main__':  # main file execution
         endTime = datetime.datetime.now()
         endTime = endTime.strftime('%H:%M:%S')
         print(f'INFO: Execution ended at {endTime}')
-        print(f'INFO: Execution ended at {endTime}', file=log)  
-                                
+        print(f'INFO: Execution ended at {endTime}', file=log)
